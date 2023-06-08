@@ -20,22 +20,7 @@ let pokemonRepository = (function () {
         }
 
     ]
-    // pokemonList.forEach(function (pokemon) {
-    //     if (pokemon.height < 1 && pokemon.height > 0.6) {
-    //         document.write(pokemon.name + " height ", pokemon.height + " this is an average sized pokemon ")
-    //         document.write('<br>')
-    //     }
-    //     else if (pokemon.height < 0.6) {
-    //         document.write(pokemon.name + " height ", pokemon.height + " This a small pokemon. ");
-    //         document.write("<br>");
-    //     } else {
-    //         document.write(pokemon.name + " height ", pokemon.height + " Wow, that's big! ");
-    //         document.write("<br>");
-        
-    // }
-    // }
-    // )
-    // ;
+    
 
 function getAll() {
     return pokemonList;
@@ -44,32 +29,41 @@ function getAll() {
 function add(pokemon) {
     pokemonList.push(pokemon);
 }
+function addListItem(pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+
+    button.addEventListener("click", function () {
+        showDetails(pokemon);
+        });
+}
+
+function showDetails(pokemon){
+    console.log(pokemon)
+}
 
 return {
     getAll: getAll,
-    add: add
-}
-
-}) ();
-
-var newPokemonList = pokemonRepository.getAll();    // Is this what you mean by new variable?
-
-
-// Unsure if you mean this foreach loop to be outside the let function or if I was supposed to leave it inside. What's the difference?
-
-newPokemonList.forEach(function (pokemon) {
-    if (pokemon.height < 1 && pokemon.height > 0.6) {
-        document.write(pokemon.name + " height ", pokemon.height + " this is an average sized pokemon ")
-        document.write('<br>')
-    }
-    else if (pokemon.height < 0.6) {
-        document.write(pokemon.name + " height ", pokemon.height + " This a small pokemon. ");
-        document.write("<br>");
-    } else {
-        document.write(pokemon.name + " height ", pokemon.height + " Wow, that's big! ");
-        document.write("<br>");
+    add: add,
+    addListItem: addListItem,
+    showDetails: showDetails
     
-}
-}
-)
-;
+};
+
+})();
+
+var newPokemonList = pokemonRepository.getAll();    
+newPokemonList.forEach(function (pokemon) {
+   pokemonRepository.addListItem(pokemon);
+
+    
+    
+    
+
+        
+});
