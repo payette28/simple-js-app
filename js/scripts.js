@@ -89,9 +89,8 @@ let pokemonRepository = (function () {
         let contentElement = document.createElement('p');
         contentElement.innerText = 'Height : ' + (pokemon.height / 10) + ' m';
 
-        let pokemonImage = document.querySelector(".pokemon-image");
+        
         pokemonImagesrc = pokemon.imageUrl;
-        let container = document.querySelector("#image-container");
         let myImage = document.createElement("img");
         myImage.src =pokemonImagesrc;
             
@@ -99,8 +98,9 @@ let pokemonRepository = (function () {
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
         modal.appendChild(contentElement);
+        modal.appendChild(myImage);
         modalContainer.appendChild(modal);
-        modalContainer.appendChild(myImage);
+        
       
         modalContainer.classList.add('is-visible');
 
@@ -125,6 +125,8 @@ let pokemonRepository = (function () {
       function hideModal(pokemon) {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
+        document.querySelector("img").remove();
+        document.querySelector(".modal").remove();
       }
       window.addEventListener('keydown', (e) => {
         let modalContainer = document.querySelector('#modal-container');
